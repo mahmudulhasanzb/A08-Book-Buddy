@@ -5,7 +5,7 @@ import Link from 'next/link';
 const navLinks = (
   <>
     <li>
-      <NavLink href={'/her'}>Home</NavLink>
+      <NavLink href={'/'}>Home</NavLink>
     </li>
     <li>
       <NavLink href={'/allbooks'}>All Books</NavLink>
@@ -24,7 +24,7 @@ const Navbar = () => {
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5 text-white"
+              className="h-5 w-5 text-base-content"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"

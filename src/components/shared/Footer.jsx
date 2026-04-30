@@ -3,7 +3,7 @@ import React from 'react';
 
 const Footer = () => {
   return (
-    <footer className="bg-base-100 text-base-content mt-16">
+    <footer className="bg-[#1F2937] text-base-content">
       <div className="container mx-auto px-4 py-12">
         {/* Main grid – responsive 3‑column layout */}
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 mb-8">
@@ -25,17 +25,16 @@ const Footer = () => {
                 f
               </a>
               <a
-              
                 href="https://twitter.com/"
-                target='_blank'
+                target="_blank"
                 className="btn btn-circle btn-sm bg-white/10 border-0 hover:bg-white/20 text-lg"
               >
                 𝕏
               </a>
-             
+
               <a
                 href="https://www.linkedin.com/"
-                target='_blank'
+                target="_blank"
                 className="btn btn-circle btn-sm bg-white/10 border-0 hover:bg-white/20 text-lg"
               >
                 in
@@ -55,12 +54,18 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link href="/all-books" className="link link-hover hover:text-white">
+                <Link
+                  href="/all-books"
+                  className="link link-hover hover:text-white"
+                >
                   All Books
                 </Link>
               </li>
               <li>
-                <Link href="/my-profile" className="link link-hover hover:text-white">
+                <Link
+                  href="/my-profile"
+                  className="link link-hover hover:text-white"
+                >
                   My Profile
                 </Link>
               </li>

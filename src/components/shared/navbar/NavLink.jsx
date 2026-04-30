@@ -11,7 +11,7 @@ const NavLinks = ({ href, children }) => {
   return (
     <Link
       href={href}
-      className={`btn btn-ghost ${isActive && 'text-purple-500 border-b-purple-500'}`}
+      className={`btn btn-ghost text-base-content ${isActive && 'text-purple-500 border-b-purple-500'}`}
     >
       {children}
     </Link>
