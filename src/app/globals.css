@@ -1,2 +1,46 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+@theme {
+  /* Color tokens */
+  --color-background: #f5efe6;
+  --color-foreground: #1a1614;
+  --color-card: #fbf7ef;
+  --color-card-foreground: #1a1614;
+  --color-primary: #3d1a2e;
+  --color-primary-foreground: #f5efe6;
+  --color-accent: #c8884a;
+  --color-accent-foreground: #1a1614;
+  --color-muted: #e8decf;
+  --color-muted-foreground: #6b5d52;
+  --color-border: #d4c8b5;
+
+  /* Font families – wired to next/font CSS variables */
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-fraunces), "Times New Roman", serif;
+}
+
+html,
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Subtle paper-grain texture overlay for that editorial library feel */
+.paper-grain {
+  background-image:
+    radial-gradient(rgba(26, 22, 20, 0.04) 1px, transparent 1px),
+    radial-gradient(rgba(26, 22, 20, 0.03) 1px, transparent 1px);
+  background-size: 24px 24px, 32px 32px;
+  background-position: 0 0, 12px 16px;
+}
+
+/* Hide scrollbar utility (used in horizontal scrollers) */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
