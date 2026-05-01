@@ -3,9 +3,11 @@ import React from 'react';
 import Link from 'next/link';
 import { FaEnvelope, FaLock, FaGoogle, FaGithub } from 'react-icons/fa6';
 import { authClient } from '@/lib/auth-client';
+import { useRouter } from 'next/navigation';
 
 
 const LoginPage = () => {
+  const router = useRouter();
 
   const onSubmit = async (e) => {
   e.preventDefault()
@@ -16,6 +18,10 @@ const LoginPage = () => {
       email,
       password,
       callbackURL: "/"
+    }, {
+      onSuccess: () => {
+        router.push('/');
+      },
     })
 }
 

@@ -105,19 +105,24 @@ const Navbar = async () => {
             {navLinks}
           </ul>
         </div>
-<h2 className='font-bold text-md'>{user.name}</h2>
+        {user && <h2 className='font-bold text-md mr-2'>{user.name}</h2>}
         <div className="navbar-end flex-1 justify-end gap-2 sm:gap-3">
-          <Link href={'/login'} className="hidden md:flex">
-            <button className="btn btn-ghost btn-sm sm:btn-md rounded-xl px-4 hover:bg-base-200 font-semibold transition-all duration-300">
-              <FaUser className="hidden lg:block" /> Login
-            </button>
-          </Link>
-          <Link href={'/signup'} className="hidden md:flex">
-            <button className="btn btn-primary btn-sm sm:btn-md rounded-xl px-4 sm:px-6 shadow-md hover:shadow-primary/40 hover:-translate-y-0.5 transition-all duration-300 font-semibold border-none">
-              <FaUserPlus className="hidden lg:block" /> Sign Up
-            </button>
-          </Link>
-          <SignOut />
+          {!user ? (
+            <>
+              <Link href={'/login'} className="hidden md:flex">
+                <button className="btn btn-ghost btn-sm sm:btn-md rounded-xl px-4 hover:bg-base-200 font-semibold transition-all duration-300">
+                  <FaUser className="hidden lg:block" /> Login
+                </button>
+              </Link>
+              <Link href={'/signup'} className="hidden md:flex">
+                <button className="btn btn-primary btn-sm sm:btn-md rounded-xl px-4 sm:px-6 shadow-md hover:shadow-primary/40 hover:-translate-y-0.5 transition-all duration-300 font-semibold border-none">
+                  <FaUserPlus className="hidden lg:block" /> Sign Up
+                </button>
+              </Link>
+            </>
+          ) : (
+            <SignOut />
+          )}
         </div>
       </div>
     </div>
