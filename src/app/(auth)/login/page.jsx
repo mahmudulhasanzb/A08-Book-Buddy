@@ -2,10 +2,22 @@
 import React from 'react';
 import Link from 'next/link';
 import { FaEnvelope, FaLock, FaGoogle, FaGithub } from 'react-icons/fa6';
+import { authClient } from '@/lib/auth-client';
 
 
 const LoginPage = () => {
 
+  const onSubmit = async (e) => {
+  e.preventDefault()
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+
+    const { } = await authClient.signIn.email({
+      email,
+      password,
+      callbackURL: "/"
+    })
+}
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-base-200 px-4 sm:px-6 lg:px-8 py-12 relative overflow-hidden">
@@ -25,7 +37,9 @@ const LoginPage = () => {
             </p>
           </div>
 
-          <form className="space-y-6">
+          <form
+          onSubmit={onSubmit}
+            className="space-y-6">
             <div className="space-y-2">
               <label className="text-sm font-semibold text-base-content/80 ml-1">
                 Email Address
@@ -35,6 +49,7 @@ const LoginPage = () => {
                   <FaEnvelope />
                 </div>
                 <input
+                  name='email'
                   type="email"
                   className="input input-bordered w-full pl-11 bg-base-200/50 focus:bg-base-100 transition-all focus:ring-2 focus:ring-primary/20"
                   placeholder="hello@example.com"
@@ -54,6 +69,7 @@ const LoginPage = () => {
                   <FaLock />
                 </div>
                 <input
+                  name='password'
                   type="password"
                   className="input input-bordered w-full pl-11 bg-base-200/50 focus:bg-base-100 transition-all focus:ring-2 focus:ring-primary/20"
                   placeholder="••••••••"
@@ -99,7 +115,7 @@ const LoginPage = () => {
         <p className="text-center mt-8 text-base-content/60 font-medium text-sm">
           Don't have an account?{' '}
           <Link
-            href="/register"
+            href="/signup"
             className="font-bold text-primary hover:text-primary-focus hover:underline transition-colors"
           >
             Sign up now

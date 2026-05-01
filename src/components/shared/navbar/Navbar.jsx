@@ -2,6 +2,9 @@ import React from 'react';
 import NavLink from './NavLink';
 import Link from 'next/link';
 import { FaBookOpen, FaRegUser, FaUser, FaUserPlus } from 'react-icons/fa6';
+import SignOut from './SignOut';
+import { auth } from '@/lib/auth';
+import { headers } from 'next/headers';
 
 const navLinks = (
   <>
@@ -29,7 +32,12 @@ const navLinks = (
   </>
 );
 
-const Navbar = () => {
+const Navbar = async () => {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+  const user = session?.user;
+
   return (
     <div className="sticky top-0 z-50 bg-base-100/70 backdrop-blur-lg border-b border-base-200 shadow-sm transition-all duration-300">
       <div className="navbar max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 py-2 md:py-3">
@@ -71,7 +79,7 @@ const Navbar = () => {
               </li>
               <li className="md:hidden">
                 <Link
-                  href={'/register'}
+                  href={'/signup'}
                   className="bg-primary/10 text-primary font-medium flex items-center justify-center py-3 mt-1 hover:bg-primary/20"
                 >
                   <FaUserPlus className="mr-2" /> Sign Up
@@ -97,18 +105,19 @@ const Navbar = () => {
             {navLinks}
           </ul>
         </div>
-
+<h2 className='font-bold text-md'>{user.name}</h2>
         <div className="navbar-end flex-1 justify-end gap-2 sm:gap-3">
           <Link href={'/login'} className="hidden md:flex">
             <button className="btn btn-ghost btn-sm sm:btn-md rounded-xl px-4 hover:bg-base-200 font-semibold transition-all duration-300">
               <FaUser className="hidden lg:block" /> Login
             </button>
           </Link>
-          <Link href={'/register'} className="hidden md:flex">
+          <Link href={'/signup'} className="hidden md:flex">
             <button className="btn btn-primary btn-sm sm:btn-md rounded-xl px-4 sm:px-6 shadow-md hover:shadow-primary/40 hover:-translate-y-0.5 transition-all duration-300 font-semibold border-none">
               <FaUserPlus className="hidden lg:block" /> Sign Up
             </button>
           </Link>
+          <SignOut />
         </div>
       </div>
     </div>

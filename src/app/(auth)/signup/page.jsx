@@ -1,9 +1,43 @@
-"use client"
+'use client';
 import React from 'react';
 import Link from 'next/link';
-import { FaUser, FaEnvelope, FaLock, FaGoogle, FaGithub, FaImage } from 'react-icons/fa6';
+import {
+  FaUser,
+  FaEnvelope,
+  FaLock,
+  FaGoogle,
+  FaGithub,
+  FaImage,
+} from 'react-icons/fa6';
+import { authClient } from '@/lib/auth-client';
+import { useRouter } from 'next/navigation';
 
-const RegisterPage = () => {
+const SingUpPage = () => {
+  const router = useRouter;
+
+  const onSubmit = async e => {
+    e.preventDefault();
+    const name = e.target.name.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    const image = e.target.image.value;
+
+    const { data, error } = await authClient.signUp.email(
+      {
+        name,
+        email,
+        password,
+        image,
+      },
+      {
+        onSuccess: () => {
+          router.push('/');
+        },
+      },
+    );
+
+    console.log({ data, error });
+  };
   return (
     <div className="min-h-screen flex items-center justify-center bg-base-200 px-4 sm:px-6 lg:px-8 py-12 relative overflow-hidden">
       {/* Background Decorative Blobs */}
@@ -22,7 +56,7 @@ const RegisterPage = () => {
             </p>
           </div>
 
-          <form className="space-y-5">
+          <form onSubmit={onSubmit} className="space-y-5">
             <div className="space-y-2">
               <label className="text-sm font-semibold text-base-content/80 ml-1">
                 Full Name
@@ -32,6 +66,7 @@ const RegisterPage = () => {
                   <FaUser />
                 </div>
                 <input
+                  name="name"
                   type="text"
                   className="input input-bordered w-full pl-11 bg-base-200/50 focus:bg-base-100 transition-all focus:ring-2 focus:ring-primary/20"
                   placeholder="John Doe"
@@ -49,6 +84,7 @@ const RegisterPage = () => {
                   <FaEnvelope />
                 </div>
                 <input
+                  name="email"
                   type="email"
                   className="input input-bordered w-full pl-11 bg-base-200/50 focus:bg-base-100 transition-all focus:ring-2 focus:ring-primary/20"
                   placeholder="hello@example.com"
@@ -66,6 +102,7 @@ const RegisterPage = () => {
                   <FaLock />
                 </div>
                 <input
+                  name="password"
                   type="password"
                   className="input input-bordered w-full pl-11 bg-base-200/50 focus:bg-base-100 transition-all focus:ring-2 focus:ring-primary/20"
                   placeholder="••••••••"
@@ -83,6 +120,7 @@ const RegisterPage = () => {
                   <FaImage />
                 </div>
                 <input
+                  name="image"
                   type="text"
                   className="input input-bordered w-full pl-11 bg-base-200/50 focus:bg-base-100 transition-all focus:ring-2 focus:ring-primary/20"
                   placeholder="https://example.com/image.jpg"
@@ -108,7 +146,7 @@ const RegisterPage = () => {
               </div>
               <div className="relative flex justify-center text-sm">
                 <span className="px-4 bg-base-100 text-base-content/50 font-medium">
-                  Or register with
+                  Or signup with
                 </span>
               </div>
             </div>
@@ -140,4 +178,4 @@ const RegisterPage = () => {
   );
 };
 
-export default RegisterPage;
+export default SingUpPage;
