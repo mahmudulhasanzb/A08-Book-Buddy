@@ -13,7 +13,7 @@ import { authClient } from '@/lib/auth-client';
 import { useRouter } from 'next/navigation';
 
 const SingUpPage = () => {
-  const router = useRouter();
+  const router = useRouter;
 
   const onSubmit = async e => {
     e.preventDefault();
