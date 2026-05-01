@@ -55,7 +55,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  href="/all-books"
+                  href="/books"
                   className="link link-hover hover:text-white"
                 >
                   All Books
