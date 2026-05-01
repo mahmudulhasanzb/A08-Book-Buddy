@@ -1,9 +1,19 @@
-import React from 'react'
+import MyProfile from '@/components/profile/MyProfile';
 
-const MyProfilePage = () => {
-  return (
-    <div>MyProfilePage</div>
-  )
-}
+// fake DB call (replace later)
+const getUser = async () => {
+  return {
+    name: 'Alex Reader',
+    username: '@alex_reads',
+    bio: 'Avid reader of science fiction.',
+    image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=AlexReader',
+  };
+};
 
-export default MyProfilePage
+const ProfilePage = async () => {
+  const user = await getUser();
+
+  return <MyProfile user={user} />;
+};
+
+export default ProfilePage;
