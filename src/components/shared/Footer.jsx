@@ -63,7 +63,7 @@ const Footer = () => {
               </li>
               <li>
                 <Link
-                  href="/my-profile"
+                  href="/profile"
                   className="link link-hover hover:text-white"
                 >
                   My Profile

@@ -16,7 +16,7 @@ const navLinks = (
       </NavLink>
     </li>
     <li>
-      <NavLink href={'/my-profile'}>
+      <NavLink href={'/profile'}>
         <span className="font-medium text-base hover:text-primary transition-colors">My Profile</span>
       </NavLink>
     </li>
