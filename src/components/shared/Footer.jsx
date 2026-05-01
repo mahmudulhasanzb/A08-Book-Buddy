@@ -10,7 +10,7 @@ const Footer = () => {
           {/* Brand & Social */}
           <div>
             <h3 className="text-xl font-semibold text-purple-500 mb-4">
-              📚 Book Budy
+              📚 Book Buddy
             </h3>
             <p className="text-gray-400/80 leading-relaxed max-w-xs">
               Digitizing the library experience. Borrow books anytime, anywhere.
