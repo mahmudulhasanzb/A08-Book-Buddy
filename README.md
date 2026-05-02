@@ -4,7 +4,7 @@ A seamless and modern web application that digitizes the traditional library exp
 
 ## 🌐 Live URL
 
-> _Add your Vercel / Render live URL here_
+> [Book Buddy](https://book-budy.vercel.app/)
 
 ## 🎯 Purpose
 
