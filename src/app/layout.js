@@ -1,6 +1,8 @@
 import './globals.css';
 import Navbar from '@/components/shared/navbar/Navbar';
 import Footer from '@/components/shared/Footer';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const metadata = {
   title: 'Create Next App',
@@ -14,6 +16,7 @@ export default function RootLayout({ children }) {
         <Navbar />
         <main>{children}</main>
         <Footer />
+        <ToastContainer position="top-right" autoClose={3000} />
       </body>
     </html>
   );

@@ -1,23 +1,36 @@
-"use client"
+'use client';
 import React from 'react';
 import Link from 'next/link';
 import { FaEnvelope, FaLock, FaGoogle, FaGithub } from 'react-icons/fa6';
 import { authClient } from '@/lib/auth-client';
-
+import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
 
 const LoginPage = () => {
+  const router = useRouter();
 
-  const onSubmit = async (e) => {
-  e.preventDefault()
+  const onSubmit = async e => {
+    e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    const { } = await authClient.signIn.email({
-      email,
-      password,
-      callbackURL: "/"
-    })
-}
+    const { error } = await authClient.signIn.email(
+      {
+        email,
+        password,
+      },
+      {
+        onSuccess: () => {
+          router.push('/');
+          toast.success('Login Successful');
+          router.refresh();
+        },
+      },
+    );
+    if (error) {
+      toast.error(error.message);
+    }
+  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-base-200 px-4 sm:px-6 lg:px-8 py-12 relative overflow-hidden">
@@ -37,9 +50,7 @@ const LoginPage = () => {
             </p>
           </div>
 
-          <form
-          onSubmit={onSubmit}
-            className="space-y-6">
+          <form onSubmit={onSubmit} className="space-y-6">
             <div className="space-y-2">
               <label className="text-sm font-semibold text-base-content/80 ml-1">
                 Email Address
@@ -49,7 +60,7 @@ const LoginPage = () => {
                   <FaEnvelope />
                 </div>
                 <input
-                  name='email'
+                  name="email"
                   type="email"
                   className="input input-bordered w-full pl-11 bg-base-200/50 focus:bg-base-100 transition-all focus:ring-2 focus:ring-primary/20"
                   placeholder="hello@example.com"
@@ -69,7 +80,7 @@ const LoginPage = () => {
                   <FaLock />
                 </div>
                 <input
-                  name='password'
+                  name="password"
                   type="password"
                   className="input input-bordered w-full pl-11 bg-base-200/50 focus:bg-base-100 transition-all focus:ring-2 focus:ring-primary/20"
                   placeholder="••••••••"

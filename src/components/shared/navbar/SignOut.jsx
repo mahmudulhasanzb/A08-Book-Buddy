@@ -2,6 +2,7 @@
 import { authClient } from '@/lib/auth-client';
 import { useRouter } from 'next/navigation';
 import React from 'react';
+import { toast } from 'react-toastify';
 
 const SignOut = () => {
   const router = useRouter();
@@ -9,6 +10,7 @@ const SignOut = () => {
     await authClient.signOut();
     router.push('/');
     router.refresh();
+    toast.warn("You SignOut")
   };
   return (
     <button

@@ -11,9 +11,10 @@ import {
 } from 'react-icons/fa6';
 import { authClient } from '@/lib/auth-client';
 import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
 
 const SingUpPage = () => {
-  const router = useRouter;
+  const router = useRouter();
 
   const onSubmit = async e => {
     e.preventDefault();
@@ -31,12 +32,15 @@ const SingUpPage = () => {
       },
       {
         onSuccess: () => {
+          toast.success('Account created successfully');
           router.push('/');
+        },
+        onError: error => {
+          toast.error(error.message);
         },
       },
     );
-
-    console.log({ data, error });
+   console.log({data, error});
   };
   return (
     <div className="min-h-screen flex items-center justify-center bg-base-200 px-4 sm:px-6 lg:px-8 py-12 relative overflow-hidden">
