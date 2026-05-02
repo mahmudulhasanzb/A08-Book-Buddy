@@ -37,7 +37,7 @@ const Navbar = async () => {
     headers: await headers(),
   });
   const user = session?.user;
-console.log('session', session);
+
   return (
     <div className="sticky top-0 z-50 bg-base-100/70 backdrop-blur-lg border-b border-base-200 shadow-sm transition-all duration-300">
       <div className="navbar max-w-7xl mx-auto px-2 sm:px-4 lg:px-8 py-2 md:py-3 relative">

@@ -40,7 +40,7 @@ const SingUpPage = () => {
         },
       },
     );
-   console.log({data, error});
+
   };
   return (
     <div className="min-h-screen flex items-center justify-center bg-base-200 px-4 sm:px-6 lg:px-8 py-12 relative overflow-hidden">
