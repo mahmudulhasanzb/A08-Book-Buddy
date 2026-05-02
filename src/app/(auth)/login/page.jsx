@@ -35,6 +35,12 @@ const LoginPage = () => {
     }
   };
 
+  const handleGoogleSignIn = async () => {
+    await authClient.signIn.social({
+      provider: 'google',
+    });
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-base-200 px-4 sm:px-6 lg:px-8 py-12 relative overflow-hidden">
       {/* Background Decorative Blobs */}
@@ -115,6 +121,7 @@ const LoginPage = () => {
 
             <div className="mt-6 grid grid-cols-1 gap-4">
               <button
+                onClick={handleGoogleSignIn}
                 className="btn btn-outline border-base-300 hover:bg-base-200 hover:text-base-content hover:border-base-300 gap-2 w-full shadow-sm hover:-translate-y-0.5 transition-transform duration-300"
               >
                 <FaGoogle className="text-red-500 text-lg" />
@@ -139,57 +146,3 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
-
-
-
-          <form method="dialog" className="space-y-4">
-            <div className="form-control w-full">
-              <label className="label font-medium text-sm text-base-content/80">
-                <span className="label-text">Full Name</span>
-              </label>
-              <input
-                type="text"
-                placeholder="Enter your full name"
-                className="input w-full rounded-xl"
-              />
-            </div>
-
-            <div className="form-control w-full">
-              <label className="label font-medium text-sm text-base-content/80">
-                <span className="label-text">Username</span>
-              </label>
-              <input
-                type="text"
-                placeholder="Enter your username"
-                className="input w-full rounded-xl"
-              />
-            </div>
-
-            <div className="form-control w-full">
-              <label className="label font-medium text-sm text-base-content/80">
-                <span className="label-text">Image URL</span>
-              </label>
-              <input
-                type="url"
-                placeholder="Enter image URL (e.g., https://...)"
-                className="input w-full rounded-xl"
-              />
-            </div>
-
-            {/* Actions */}
-            <div className="mt-8 flex flex-col sm:flex-row gap-3">
-              <button
-                method="dialog"
-                className="btn btn-outline border-base-content/20 hover:bg-base-content/10 hover:border-transparent flex-1 rounded-xl"
-              >
-                Cancel
-              </button>
-
-              <button
-                type="submit"
-                className="btn btn-primary flex-1 rounded-xl"
-              >
-                Save Changes
-              </button>
-            </div>
-          </form>;

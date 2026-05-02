@@ -6,7 +6,6 @@ import {
   FaEnvelope,
   FaLock,
   FaGoogle,
-  FaGithub,
   FaImage,
 } from 'react-icons/fa6';
 import { authClient } from '@/lib/auth-client';
@@ -45,6 +44,13 @@ const SingUpPage = () => {
     }
 
   };
+
+  const handaleGoogleSignIn = async () => {
+    await authClient.signIn.social({
+      provider: 'google',
+    });
+  }
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-base-200 px-4 sm:px-6 lg:px-8 py-12 relative overflow-hidden">
       {/* Background Decorative Blobs */}
@@ -159,7 +165,7 @@ const SingUpPage = () => {
             </div>
 
             <div className="mt-6 grid grid-cols-1 gap-4">
-              <button className="btn btn-outline border-base-300 hover:bg-base-200 hover:text-base-content hover:border-base-300 gap-2 w-full shadow-sm hover:-translate-y-0.5 transition-transform duration-300">
+              <button onClick={handaleGoogleSignIn} className="btn btn-outline border-base-300 hover:bg-base-200 hover:text-base-content hover:border-base-300 gap-2 w-full shadow-sm hover:-translate-y-0.5 transition-transform duration-300">
                 <FaGoogle className="text-red-500 text-lg" />
                 Google
               </button>
