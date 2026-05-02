@@ -2,10 +2,15 @@ import { getBookDetails } from '@/lib/data';
 import Link from 'next/link';
 import Image from 'next/image';
 import { FaArrowLeft } from 'react-icons/fa6';
+import { auth } from '@/lib/auth';
+import { headers } from 'next/headers';
+import BorrowButton from '@/components/ui/BorrowButton';
 
 const BookDetailsPage = async ({ params }) => {
   const { id } = await params;
   const book = await getBookDetails(id);
+  const session = await auth.api.getSession({ headers: await headers() });
+  const isLoggedIn = !!session;
   
   return (
     <div className="min-h-screen bg-base-200 relative overflow-hidden pb-20">
@@ -60,12 +65,10 @@ const BookDetailsPage = async ({ params }) => {
             </div>
             
             <div className="mt-auto flex flex-col sm:flex-row gap-4">
-              <button 
-                className="btn btn-primary btn-lg rounded-xl shadow-lg hover:shadow-primary/50 transition-all duration-300 text-lg w-full sm:w-auto px-10"
-                disabled={book.available_quantity <= 0}
-              >
-                {book.available_quantity > 0 ? 'BORROW THIS BOOK' : 'OUT OF STOCK'}
-              </button>
+              <BorrowButton
+                isLoggedIn={isLoggedIn}
+                available={book.available_quantity > 0}
+              />
             </div>
           </div>
           

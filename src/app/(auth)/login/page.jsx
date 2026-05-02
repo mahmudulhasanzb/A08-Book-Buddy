@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import Link from 'next/link';
-import { FaEnvelope, FaLock, FaGoogle, FaGithub } from 'react-icons/fa6';
+import { FaEnvelope, FaLock, FaGoogle } from 'react-icons/fa6';
 import { authClient } from '@/lib/auth-client';
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify';
@@ -35,11 +35,6 @@ const LoginPage = () => {
     }
   };
 
-  const handleGoogleSignIn = async () => {
-    await authClient.signIn.social({
-      provider: 'google',
-    });
-  };
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-base-200 px-4 sm:px-6 lg:px-8 py-12 relative overflow-hidden">
@@ -121,11 +116,17 @@ const LoginPage = () => {
 
             <div className="mt-6 grid grid-cols-1 gap-4">
               <button
-                onClick={handleGoogleSignIn}
+                type="button"
+                onClick={async () => {
+                  await authClient.signIn.social({
+                    provider: 'google',
+                    callbackURL: '/',
+                  });
+                }}
                 className="btn btn-outline border-base-300 hover:bg-base-200 hover:text-base-content hover:border-base-300 gap-2 w-full shadow-sm hover:-translate-y-0.5 transition-transform duration-300"
               >
                 <FaGoogle className="text-red-500 text-lg" />
-                Google
+                Continue with Google
               </button>
             </div>
           </div>

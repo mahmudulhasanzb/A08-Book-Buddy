@@ -165,9 +165,18 @@ const SingUpPage = () => {
             </div>
 
             <div className="mt-6 grid grid-cols-1 gap-4">
-              <button onClick={handaleGoogleSignIn} className="btn btn-outline border-base-300 hover:bg-base-200 hover:text-base-content hover:border-base-300 gap-2 w-full shadow-sm hover:-translate-y-0.5 transition-transform duration-300">
+              <button
+                type="button"
+                onClick={async () => {
+                  await authClient.signIn.social({
+                    provider: 'google',
+                    callbackURL: '/',
+                  });
+                }}
+                className="btn btn-outline border-base-300 hover:bg-base-200 hover:text-base-content hover:border-base-300 gap-2 w-full shadow-sm hover:-translate-y-0.5 transition-transform duration-300"
+              >
                 <FaGoogle className="text-red-500 text-lg" />
-                Google
+                Continue with Google
               </button>
             </div>
           </div>
