@@ -2,7 +2,7 @@ import FeaturedBooks from "@/components/homepage/FeaturedBooks";
 import HeroBanner from "@/components/homepage/HeroBanner";
 import MarqueeSection from "@/components/homepage/MarqueeSection";
 import HowItWorks from "@/components/homepage/HowItWorks";
-import Newsletter from "@/components/homepage/Newsletter";
+import ReaderTestimonials from "@/components/homepage/ReaderTestimonials";
 
 export default function Home() {
   return (
@@ -11,7 +11,7 @@ export default function Home() {
       <MarqueeSection />
       <FeaturedBooks />
       <HowItWorks />
-      <Newsletter />
+      <ReaderTestimonials />
     </div>
   );
 }

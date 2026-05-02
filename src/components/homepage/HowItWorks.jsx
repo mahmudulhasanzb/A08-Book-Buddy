@@ -30,16 +30,17 @@ const HowItWorks = () => {
           How It Works
         </h2>
         <p className="text-base-content/70 max-w-2xl mx-auto mb-12 text-lg">
-          Your journey to discovering great books is just three simple steps away.
+          Your journey to discovering great books is just three simple steps
+          away.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {steps.map((step) => (
+          {steps.map(step => (
             <div
               key={step.id}
-              className="p-8 rounded-3xl bg-base-200/50 hover:bg-base-200 border border-base-300 transition-all duration-300 hover:-translate-y-2 group"
+              className="p-8 rounded-3xl bg-base-200/50 hover:bg-base-200 border  hover:border-primary/30 border-base-300 transition-all duration-300  group"
             >
-              <div className="w-16 h-16 mx-auto bg-primary/10 text-primary rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+              <div className="w-16 h-16 mx-auto bg-primary/10 text-primary rounded-2xl flex items-center justify-center mb-6">
                 {step.icon}
               </div>
               <h3 className="text-xl font-bold mb-3">{step.title}</h3>
