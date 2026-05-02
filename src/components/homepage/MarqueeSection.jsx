@@ -2,9 +2,9 @@ import Marquee from "react-fast-marquee";
 import { FaFireFlameCurved, FaBolt, FaStar, FaHeart } from "react-icons/fa6";
 
 const items = [
+  { text: "New Arrivals: The Great Gatsby", icon: <FaBolt className="text-yellow-500" /> },
+  { text: "Special Discount on Memberships...", icon: <FaStar className="text-yellow-400" /> },
   { text: "Bestselling Novels", icon: <FaFireFlameCurved className="text-orange-500" /> },
-  { text: "New Arrivals Daily", icon: <FaBolt className="text-yellow-500" /> },
-  { text: "Top Rated Authors", icon: <FaStar className="text-yellow-400" /> },
   { text: "Community Favorites", icon: <FaHeart className="text-red-500" /> },
 ];
 

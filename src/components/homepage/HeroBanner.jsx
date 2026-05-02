@@ -25,7 +25,7 @@ const HeroBanner = () => {
         <div className="items-center">
           <Link href="/books">
             <button className="btn btn-primary btn-lg rounded-full px-8 shadow-md hover:shadow-primary/30 transition-all text-base font-semibold border-none">
-              Browse Collection <FaArrowRightLong className="ml-2" />
+              Browse Now <FaArrowRightLong className="ml-2" />
             </button>
           </Link>
         </div>
