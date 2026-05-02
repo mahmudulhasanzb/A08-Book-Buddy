@@ -23,23 +23,26 @@ const SingUpPage = () => {
     const password = e.target.password.value;
     const image = e.target.image.value;
 
-    const { data, error } = await authClient.signUp.email(
-      {
+    const toastId = toast.loading('Creating account...');
+    try {
+      const { data, error } = await authClient.signUp.email({
         name,
         email,
         password,
         image,
-      },
-      {
-        onSuccess: () => {
-          toast.success('Account created successfully');
-          router.push('/');
-        },
-        onError: error => {
-          toast.error(error.message);
-        },
-      },
-    );
+      });
+
+      toast.dismiss(toastId);
+      if (error) {
+        toast.error(error.message || 'An error occurred.');
+      } else {
+        toast.success('Account created successfully! Please login to continue');
+        router.push('/login');
+      }
+    } catch (err) {
+      toast.dismiss(toastId);
+      toast.error(err.message || 'Failed to sign up.');
+    }
 
   };
   return (
@@ -155,14 +158,10 @@ const SingUpPage = () => {
               </div>
             </div>
 
-            <div className="mt-6 grid grid-cols-2 gap-4">
+            <div className="mt-6 grid grid-cols-1 gap-4">
               <button className="btn btn-outline border-base-300 hover:bg-base-200 hover:text-base-content hover:border-base-300 gap-2 w-full shadow-sm hover:-translate-y-0.5 transition-transform duration-300">
                 <FaGoogle className="text-red-500 text-lg" />
                 Google
-              </button>
-              <button className="btn btn-outline border-base-300 hover:bg-base-200 hover:text-base-content hover:border-base-300 gap-2 w-full shadow-sm hover:-translate-y-0.5 transition-transform duration-300">
-                <FaGithub className="text-lg" />
-                GitHub
               </button>
             </div>
           </div>

@@ -1,6 +1,6 @@
 import { getBookDetails } from '@/lib/data';
 import Link from 'next/link';
-import React from 'react';
+import Image from 'next/image';
 import { FaArrowLeft } from 'react-icons/fa6';
 
 const BookDetailsPage = async ({ params }) => {
@@ -25,9 +25,11 @@ const BookDetailsPage = async ({ params }) => {
           {/* Image Section */}
           <div className="w-full lg:w-1/3 flex-shrink-0 relative group">
             <div className="absolute inset-0 bg-primary/20 blur-2xl rounded-full scale-90 group-hover:scale-100 transition-transform duration-500"></div>
-            <img 
+            <Image 
               src={book.image_url} 
               alt={book.title}
+              width={400}
+              height={600}
               className="w-full h-auto rounded-2xl shadow-xl relative z-10 transform group-hover:-translate-y-2 transition-transform duration-500 object-cover aspect-[2/3]" 
             />
           </div>

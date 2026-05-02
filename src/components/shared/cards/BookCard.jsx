@@ -7,10 +7,11 @@ const BookCard = ({ book }) => {
     <div className="group relative flex flex-col bg-base-100 rounded-2xl shadow-sm hover:shadow-2xl transition-all duration-300 overflow-hidden border border-base-200/50 hover:-translate-y-1">
       {/* Image Container */}
       <figure className="relative h-[280px] w-full overflow-hidden bg-base-200">
-        <img
+        <Image
           className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           src={book?.image_url || '/placeholder-book.jpg'}
           alt={book?.title || 'Book Cover'}
+          fill
         />
         {/* Category Badge overlay */}
         {book?.category && (

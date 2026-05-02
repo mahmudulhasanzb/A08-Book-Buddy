@@ -1,8 +1,25 @@
+'use client';
 import React from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const Search = () => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const query = e.target.query.value.trim();
+    const params = new URLSearchParams(searchParams.toString());
+    if (query) {
+      params.set('q', query);
+    } else {
+      params.delete('q');
+    }
+    router.push(`/books?${params.toString()}`);
+  };
+
   return (
-    <div className="relative group w-full max-w-2xl mx-auto">
+    <form onSubmit={handleSearch} className="relative group w-full max-w-2xl mx-auto">
       <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-base-content/50 group-focus-within:text-primary transition-colors">
         <svg
           className="h-5 w-5"
@@ -22,17 +39,18 @@ const Search = () => {
         </svg>
       </div>
       <input
+        name="query"
         type="search"
-        required
+        defaultValue={searchParams.get('q') || ''}
         placeholder="Search for your favorite books..."
         className="w-full pl-12 pr-4 py-4 bg-base-100 border border-base-300 rounded-full shadow-sm focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all duration-300 text-lg"
       />
       <div className="absolute inset-y-0 right-2 flex items-center">
-        <button className="btn btn-primary btn-sm rounded-full px-6 shadow-md hover:shadow-lg transition-all">
+        <button type="submit" className="btn btn-primary btn-sm rounded-full px-6 shadow-md hover:shadow-lg transition-all">
           Search
         </button>
       </div>
-    </div>
+    </form>
   );
 };
 

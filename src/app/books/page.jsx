@@ -8,10 +8,18 @@ import BookCard from '@/components/shared/cards/BookCard';
 const AllBooksPage = async props => {
   const searchParams = await props.searchParams;
   const category = searchParams?.category;
+  const query = searchParams?.q;
   let books = await getBooks();
 
   if (category) {
     books = books.filter(book => book.category === category);
+  }
+
+  if (query) {
+    books = books.filter(book =>
+      book.title.toLowerCase().includes(query.toLowerCase()) ||
+      book.author?.toLowerCase().includes(query.toLowerCase())
+    );
   }
 // =============
 
@@ -33,7 +41,7 @@ const AllBooksPage = async props => {
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         <aside className="lg:col-span-3">
-          <Category/>
+          <Category category={category} />
         </aside>
 
         <main className="lg:col-span-9">

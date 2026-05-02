@@ -14,21 +14,24 @@ const LoginPage = () => {
     const email = e.target.email.value;
     const password = e.target.password.value;
 
-    const { error } = await authClient.signIn.email(
-      {
+    const toastId = toast.loading('Logging in...');
+    try {
+      const { error } = await authClient.signIn.email({
         email,
         password,
-      },
-      {
-        onSuccess: () => {
-          router.push('/');
-          toast.success('Login Successful');
-          router.refresh();
-        },
-      },
-    );
-    if (error) {
-      toast.error(error.message);
+      });
+
+      toast.dismiss(toastId);
+      if (error) {
+        toast.error(error.message || 'Login failed.');
+      } else {
+        toast.success('Login Successful');
+        router.push('/');
+        router.refresh();
+      }
+    } catch (err) {
+      toast.dismiss(toastId);
+      toast.error(err.message || 'An error occurred during login.');
     }
   };
 
@@ -110,14 +113,12 @@ const LoginPage = () => {
               </div>
             </div>
 
-            <div className="mt-6 grid grid-cols-2 gap-4">
-              <button className="btn btn-outline border-base-300 hover:bg-base-200 hover:text-base-content hover:border-base-300 gap-2 w-full shadow-sm hover:-translate-y-0.5 transition-transform duration-300">
+            <div className="mt-6 grid grid-cols-1 gap-4">
+              <button
+                className="btn btn-outline border-base-300 hover:bg-base-200 hover:text-base-content hover:border-base-300 gap-2 w-full shadow-sm hover:-translate-y-0.5 transition-transform duration-300"
+              >
                 <FaGoogle className="text-red-500 text-lg" />
                 Google
-              </button>
-              <button className="btn btn-outline border-base-300 hover:bg-base-200 hover:text-base-content hover:border-base-300 gap-2 w-full shadow-sm hover:-translate-y-0.5 transition-transform duration-300">
-                <FaGithub className="text-lg" />
-                GitHub
               </button>
             </div>
           </div>

@@ -2,6 +2,8 @@
 import { useState } from 'react';
 import { FaUserPen } from 'react-icons/fa6';
 
+import Image from 'next/image';
+
 const MyProfile = ({ user }) => {
   const [profile, setProfile] = useState(user);
   const [isEditing, setIsEditing] = useState(false);
@@ -23,9 +25,12 @@ const MyProfile = ({ user }) => {
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="max-w-md w-full p-6 bg-base-200 rounded-xl shadow-sm">
-        <img
-          src={profile.image}
-          className="w-24 h-24 rounded-full mx-auto mb-4"
+        <Image
+          src={profile?.image || ''}
+          alt={profile?.name || 'Profile'}
+          width={96}
+          height={96}
+          className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
         />
 
         {isEditing && (
